@@ -20,18 +20,36 @@ type AddExpenseModalProps = {
   ) => void;
 };
 
-export default function AddExpenseModal({}: AddExpenseModalProps) {
+export default function AddExpenseModal({  
+  opened,
+  onClose,
+  onAdd,}: AddExpenseModalProps) {
   const [name, setName] = useState<string>("");
   const [amount, setAmount] = useState<string | number>(0);
   const [category, setCategory] = useState<string | null>(null);
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    if (name && amount && category) {
+      onAdd(name, amount, category);
+      setName("");
+      setAmount(0);
+      setCategory(null);
+      onClose();
+    }
+  };
 
   // หากต้องการแปง type string เป็น type number สามารถดูตัวอย่างนี้ได้
   let val_number: number = Number("500.0");
   console.log(val_number + 100); // 600.0
 
   return (
-    /* Type additional text here. */
+    <Modal opened={opened} onClose={onClose} title="Add Task">
+      <Stack>
+        {
+          
+        }
+        <Button onClick={handleSubmit}>Save</Button>
+      </Stack>
+    </Modal>
   );
 }
