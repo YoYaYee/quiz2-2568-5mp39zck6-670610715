@@ -8,8 +8,8 @@ import { MantineProvider, createTheme, virtualColor } from "@mantine/core";
 const theme = createTheme({
   fontFamily: "Kanit,sans-serif",
   colors: {
-    chanadda: virtualColor({
-      name: "chanadda",
+    ice: virtualColor({
+      name: "Pawornpruch Sanlee",
       dark: "yellow",
       light: "violet",
     }),
