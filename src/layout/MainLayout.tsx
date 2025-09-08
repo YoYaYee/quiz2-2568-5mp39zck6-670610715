@@ -17,9 +17,6 @@ export default function MainLayout() {
         <HeaderComponent opened={opened} toggle={toggle} />
       </AppShell.Header>
 
-
-
-
       <AppShell.Footer>
         <FooterComponent
           courseName="CPE207"

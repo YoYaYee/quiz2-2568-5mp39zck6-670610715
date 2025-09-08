@@ -7,10 +7,9 @@ import {
   Button,
   Stack,
 } from "@mantine/core";
-import { v4 as uuidv4 } from "uuid";
 
 
-type AddExpenseModalProps = {
+interface AddExpenseModalProps {
   opened: boolean;
   onClose: () => void;
   onAdd: (
@@ -28,14 +27,14 @@ export default function AddExpenseModal({
   const [amount, setAmount] = useState<string | number>(0);
   const [category, setCategory] = useState<string | null>(null);
 
-  const handleSubmit = () => {
+  const handleAdd = () => {
     if (name && amount && category) {
       onAdd(name, amount, category);
       setName("");
       setAmount(0);
       setCategory(null);
       onClose();
-    }
+    } 
   };
 
   // หากต้องการแปง type string เป็น type number สามารถดูตัวอย่างนี้ได้
@@ -43,12 +42,33 @@ export default function AddExpenseModal({
   console.log(val_number + 100); // 600.0
 
   return (
-    <Modal opened={opened} onClose={onClose} title="Add Task">
+    <Modal opened={opened} onClose={onClose} title="Add Expense">
       <Stack>
-        {
-          
-        }
-        <Button onClick={handleSubmit}>Save</Button>
+        {}
+
+        <TextInput
+          label="Expense name"
+          withAsterisk
+          placeholder="E.g.,Coca-Cola"
+          error="Expense Name is required"
+          description="Expense Name"
+          value={name}
+          onChange={(e) => setName(e.currentTarget.value)}
+        /> 
+
+        <NumberInput
+          label="Amount"
+          withAsterisk
+          placeholder="0"
+          error="Amount is required"
+          description="Amount"
+          value={amount}
+          onChange={(e) => setAmount(e.valueOf())}
+        />
+        <Select
+          value={category}
+        />
+        <Button onClick={handleAdd}>Submit</Button>
       </Stack>
     </Modal>
   );
